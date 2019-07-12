@@ -1,4 +1,4 @@
-node('haimaxy-jnlp') {
+node('test-jnlp') {
     stage('Prepare') {
         echo "1.Prepare Stage"
         checkout scm
@@ -20,7 +20,7 @@ node('haimaxy-jnlp') {
         echo "4.Push Docker Image Stage"
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-            sh "docker push cnych/jenkins-demo:${build_tag}"
+            sh "docker push jackliu110/jenkins-demo:${build_tag}"
         }
     }
     stage('Deploy') {
